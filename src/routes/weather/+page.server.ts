@@ -1,4 +1,4 @@
-import { error } from '@sveltejs/kit';
+// import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 /* eslint-disable */
@@ -13,7 +13,6 @@ const fetchWeather = async (latitude: number, longitude: number) => {
 	const request = `${openMeteoBaseUrl}?latitude=${latitude}&longitude=${longitude}&current_weather=true`
 	const result = await fetch(request);
 	const data = await result.json();
-	console.log(data);
 	return data;		
 }
 
@@ -33,7 +32,24 @@ export const load = (async () => {
 	
 		return weather.current_weather ?? undefined;
 	} catch {
-		throw error(404, "Wasn't able to get any weather data.\n\n It's probably raining")
+		// throw error(404, "Wasn't able to get any weather data.\n\n It's probably raining");
+		return {
+			latitude: 55.96,
+			longitude: -3.18,
+			generationtime_ms: 0.3420114517211914,
+			utc_offset_seconds: 0,
+			timezone: 'GMT',
+			timezone_abbreviation: 'GMT',
+			elevation: 69,
+			current_weather: {
+			  temperature: 16.3,
+			  windspeed: 18.4,
+			  winddirection: 78,
+			  weathercode: 3,
+			  is_day: 1,
+			  time: '2023-08-31T17:00'
+			}
+		}
 	}
 }) satisfies PageServerLoad;
 

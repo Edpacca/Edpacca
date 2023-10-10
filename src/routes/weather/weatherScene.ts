@@ -1,4 +1,5 @@
 import { drawCircle } from "$lib/canvasUtils";
+import { randBetween, randIntBetween, randVariance } from "$lib/utils";
 
 export function drawOrbit(
     context: CanvasRenderingContext2D,
@@ -107,30 +108,38 @@ export function drawTree(context: CanvasRenderingContext2D,
 // }
 
 export function drawCloud(context: CanvasRenderingContext2D, x: number, y: number, size: number) {
-  
   const sizeVarFactor = 0.8;
   const rowVarFactor = 0.9;
-  const sizeVariance = size * sizeVarFactor;
   // get random size between 0.75 and 1.5 x provided size
-  const getBlobSize = () => Math.floor((Math.random() * sizeVariance) + sizeVariance);
-  const getRowLength = (middle: number) => Math.floor((Math.random() * middle * rowVarFactor) + (middle * rowVarFactor))
-  const numberOfRows = Math.floor((Math.random() * 3) + 3);
+  const numberOfRows = randIntBetween(3, 6);
   
-  console.log(numberOfRows);
-
   let rowLength = 4;
   let newSize = size;
   let newPosX;
   let newPosY;
   const cloudColour = "rgba(255, 255, 255, 0.8)";
-  for (let cy = 0; cy <= numberOfRows * size; cy += size) {
-    rowLength = getRowLength(rowLength);
-    for (let cx = 0; cx <= rowLength * size; cx += size) {
-      const offset = (Math.random() * newSize * 2) + newSize;
-      newSize = getBlobSize();
-      newPosX = cx + x + offset
+  for (let cy = 0; cy <= numberOfRows * size * 3; cy += size * 3) {
+    rowLength = randIntBetween(2, 12);
+    for (let cx = 0; cx <= rowLength * size * 3; cx += size * 3) {
+      // const offset = newSize * 3;
+      newSize = randVariance(size, 0.3);
+      newPosX = cx + x;
       newPosY = cy + y
       drawCircle(context, newPosX, newPosY, newSize, undefined, cloudColour)
     }    
+  }
+}
+
+export function curve(context:CanvasRenderingContext2D, x1: number, y: number, size: number) {
+
+  // let yValues = [];
+
+  // const values = [1, 3, 4, 5, 4, 3, 1];
+  // const length = yValues.length
+  for (let x = 0; x < 22; x++) {
+    const xpos = x + x1
+    const ypos = y + (x - 10) * (x - 10)
+
+    drawCircle(context, xpos * 10, ypos, size, undefined, "yellow");
   }
 }
