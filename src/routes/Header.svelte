@@ -13,14 +13,14 @@
 			<li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
 				<a href="/">Home</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith("/projects") || isPostPage ? "page" : undefined}>
+			<li aria-current={$page.url.pathname.startsWith("/projects") ? "page" : undefined}>
 				<a href="/projects">Projects</a>
 			</li>
 			<!-- <li aria-current={$page.url.pathname.startsWith("/weather") ? "page" : undefined}>
 				<a href="/weather">Weather</a>
 			</li> -->
-			<li aria-current={$page.url.pathname.startsWith("/cv") ? "page" : undefined}>
-				<a href="/cv">CV</a>
+			<li aria-current={$page.url.pathname.startsWith("/fetch") ? "page" : undefined}>
+				<a href="/fetch">Merry Christmas Ala</a>
 			</li>
 		</ul>
 	</nav>
