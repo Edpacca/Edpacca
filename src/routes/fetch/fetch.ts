@@ -16,13 +16,14 @@ export function runFetch(
     const cenX = canvasWidth / 2 - (aWidth / 2);
     const cenY = canvasHeight / 2 - (aHeight / 2);
     const aVelocity = 10;
-    const kVelocity = 20;
+    const kVelocity = 5;
 
     let aPosX = cenX;
     let aPosY = cenY;
     
     let kPosX = 10;
     let kPosY = 10;
+    let chasing = false;
 
     alaCtx.drawImage(ala, 0, 0, aWidth, aHeight);
     koraCtx.drawImage(kora, 0, 0, kSize, kSize);
@@ -30,10 +31,12 @@ export function runFetch(
     ctx.drawImage(koraCanvas, 0, 0, canvasWidth, canvasHeight);
     
     document.addEventListener("keydown", handleKeyboardEvent, false);
-    
 
     function handleKeyboardEvent(event: KeyboardEvent) {
         switch(event.key) {
+            case " " || "Space":
+                chasing = !chasing;
+                break;
             case "ArrowDown":
                 aPosY += aVelocity;
                 break;
@@ -52,7 +55,8 @@ export function runFetch(
     }
 
     function update() {
-        calculateKoraTrajectory();
+        if (chasing) calculateKoraTrajectory();
+        
         ctx.clearRect(0, 0, canvasWidth, canvasHeight);
         ctx.drawImage(alaCanvas, aPosX, aPosY, canvasWidth, canvasHeight)
         ctx.drawImage(koraCanvas, kPosX, kPosY, canvasWidth, canvasHeight)
@@ -65,15 +69,13 @@ export function runFetch(
     function calculateKoraTrajectory() {
         const diffX = aPosX - kPosX;
         const diffY = aPosY - kPosY;
-        const angle = Math.atan(
-            diffY / diffX
-        );
+
 
         if (Math.abs(diffX) > 20) {
-            kPosX += Math.sin(angle) * kVelocity;
+            kPosX += (diffX > 0 ? 1 : -1) * kVelocity;
         }
         if (Math.abs(diffY) > 20) {
-            kPosY += Math.cos(angle) * kVelocity;
+            kPosY += (diffY > 0 ? 1 : -1) * kVelocity;
         }
 
     }

@@ -28,7 +28,9 @@
 <canvas class="ala-canvas" bind:this={alaCanvas}></canvas>
 <canvas class="kora-canvas" bind:this={koraCanvas}></canvas>
 <canvas class="game-canvas" bind:this={canvas}></canvas>
-
+<div class="instructions">
+    <h3>Space: zostawać / chodź</h3>
+</div>
 
 <svelte:window on:keydown|preventDefault/>
 <style>
@@ -52,5 +54,11 @@
 		image-rendering: -moz-crisp-edges;
 		image-rendering: crisp-edges;
         display: none;
+    }
+
+    .instructions {
+        position: fixed;
+        right: 64px;
+        top: 64px
     }
 </style>
