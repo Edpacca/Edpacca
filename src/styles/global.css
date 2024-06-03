@@ -183,6 +183,12 @@ img.cover-image {
 	margin: 2em 0;
 }
 
+.one-two-grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-gap: 1em;
+}
+
 .caption {
 	font-weight: 100;
 	font-style: italic;
@@ -272,6 +278,11 @@ img.gallery-img{
 	grid-template-columns:  1fr 1fr;
 }
 
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
 .italic {
 	font-style: italic;
 }
@@ -283,12 +294,13 @@ img.gallery-img{
 	}
 
 	p {
-		font-size: 1.4em;
+		font-size: 1.2em;
 	}
 
-	.image-grid {
+	.image-grid, .one-two-grid {
 		grid-template-columns: 1fr;
 	}
+	
 }
 
 .debug {

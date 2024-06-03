@@ -40,7 +40,7 @@
     const btns = [
         {
             title: "Reset Positions",
-            fnc: () => { 
+            fnc: () => {
                 reset();
                 if (hasGravity) {
                     wordSoup.setGravity(new Vector2D(xGravity / 100, yGravity / 100));
@@ -51,8 +51,8 @@
         },
         {
             title: "Reset Gravity",
-            fnc: () => { 
-                wordSoup.setForces(new Vector2D(0, 1), false);
+            fnc: () => {
+                wordSoup.setForces(new Vector2D(0, 0.2), false);
                 syncGravity();
                 hasGravity = true;
             }
@@ -62,13 +62,15 @@
             fnc: () => {
                 wordSoup.setForces(ZERO_VECTOR, true, 0.1);
                 hasGravity = false;
-            } 
+            }
         }
     ]
 
     onMount(() => {
         reset();
         syncGravity();
+        wordSoup.setForces(ZERO_VECTOR, true, 0.1);
+        hasGravity = false;
     });
 
     $: wordSoup?.setGravity(new Vector2D(xGravity / 100, yGravity / 100));

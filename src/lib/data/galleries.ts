@@ -51,7 +51,7 @@ export const DW_ARMOUR_GALLERY = [
     "/images/warhammer/dw-armour/dw-armour_7.webp",
 ]
 
-export const MINIATURE_SPOTLIGHT_IMG = "/images/warhammer/gallery/deathwing-alpha.webp"
+export const MINIATURE_SPOTLIGHT_IMG = "/images/warhammer/gallery/devastator-sergeant-alpha.webp"
 // export const MINIATURE_SPOTLIGHT_IMG = "/images/warhammer/gallery/da-dreadnaught-alpha.webp"
 
 export const MINIATURE_GALLERY: ImageMetadata[] = [

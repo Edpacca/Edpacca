@@ -2,7 +2,7 @@ import { LANG_LOGO_COLORS } from "./data/codeLangData";
 import { resolveCollisions, type Rect, resolveCollision } from "./mechanics/rect";
 import { Vector2D, randomVector } from "./mechanics/vector";
 
-export const DEFAULT_GRAVITY = new Vector2D(0, 1);
+export const DEFAULT_GRAVITY = new Vector2D(0, 0.2);
 const DEFAULT_DAMPING_FACTOR = 0.3;
 const DEFAULT_MIN_MAGNITUDE = 4.8
 const DEFAULT_FONT_AREA = 1200;
@@ -60,7 +60,7 @@ export class WordSoup {
                     getProportionalFontSize(fontArea, words[word], minFontSize),
                     getColor(word)));
         })
-        
+
         let lastPlacedBlock: WordBlock;
         const nextPosition = new Vector2D(10, 10);
         const maxBlockHeight = Math.max(...this.wordBlocks.map(b => b.height));
@@ -106,9 +106,9 @@ export class WordSoup {
     updateVelocity(word: WordBlock, collisionRects: Rect[], force: Vector2D) {
         word.velocity.add(force);
 
-        const potentialPos = new Vector2D(word.position.x + word.velocity.x, 
+        const potentialPos = new Vector2D(word.position.x + word.velocity.x,
             word.position.y + word.velocity.y);
-        
+
         const potentialRect: Rect = {
             x1: potentialPos.x,
             x2: potentialPos.x + word.width,
@@ -117,7 +117,7 @@ export class WordSoup {
         }
 
         const collision = resolveCollisions(potentialRect, word.getRect(), collisionRects, word.velocity);
-        
+
         let rectangleCollision = false;
         let boundaryCollision = false;
 
@@ -151,12 +151,12 @@ export class WordSoup {
 
         if (word.position.x < 0) {
             word.position.x = 1;
-        } 
-        
+        }
+
         if(word.position.x >= this.canvas.width - word.width) {
             word.position.x = this.canvas.width - word.width - 1;
         }
-        
+
         if (word.position.y < 0) {
             word.position.y = 1;
         }

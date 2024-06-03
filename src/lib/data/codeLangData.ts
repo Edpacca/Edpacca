@@ -12,10 +12,11 @@ export const LANG_LOGO_COLORS: Record<string, string> = {
   "Python": "#007c01",
   "Lua": "#135cb0",
   "C": "#283592",
+  "C++": "#283592",
   "C#": "#546e7a",
   "Bash": "#434345",
   "Makefile": "#272727",
-} 
+}
 
 export function getLangShortName(fullName: string) {
   switch (fullName) {
@@ -40,7 +41,8 @@ export const EXTERNAL_CODE_LANGS: Record<string, number> = {
     "Docker": 3,
     "Bash": 6,
     "Java": 6,
-    "SCSS": 1
+    "SCSS": 1,
+    "C++": 4
 }
 
 export const STATIC_LANG_DATA: Record<string, number>[] = [
@@ -51,6 +53,7 @@ export const STATIC_LANG_DATA: Record<string, number>[] = [
       TypeScript: 294,
       JavaScript: 207
     },
+    { 'C++': 21132 },
     { 'C#': 29237 },
     { C: 50772, Python: 5930, Makefile: 750 },
     {
