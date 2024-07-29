@@ -1,6 +1,7 @@
 <script lang=ts>
     import { page } from "$app/stores";
     import TechnologySoup from "$lib/components/TechnologySoup.svelte";
+    import DnD5eStats from "$lib/components/DnD5eStats.svelte";
     import MiniaturesPage from "$lib/pages/MiniaturesPage.svelte";
     import PostPreview from "$lib/components/PostPreview.svelte";
     import BackButton from "$lib/components/BackButton.svelte";
@@ -11,14 +12,16 @@
 
 </script>
 
-<h1>{data.project?.name}</h1>
+<h1 class={$page.url.pathname.split("/projects/")[1] === "dnd" ? "dragonhunter" : ""}>{data.project?.name}</h1>
 <BackButton text={"projects"} urlRef={"/projects"}/>
 
 <br/>
 {#if $page.url.pathname.split("/projects/")[1] === "minipainting"}
     <MiniaturesPage/>
 {/if}
-
+{#if $page.url.pathname.split("/projects/")[1] === "dnd"}
+    <DnD5eStats/>
+{/if}
 <div class="description">
     {data.project?.description ?? ""}
 </div>
